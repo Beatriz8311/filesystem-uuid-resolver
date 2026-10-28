@@ -1,0 +1,17 @@
+{
+  "name": "filesystem-uuid-resolver",
+  "version": "0.1.0",
+  "description": "Maps filesystem UUIDs and labels to their device paths using /dev/disk symlinks",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "license": "BSD-3-Clause",
+  "dependencies": {}
+}
