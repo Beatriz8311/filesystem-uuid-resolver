@@ -26,3 +26,10 @@ The trade-off: this library only works on systems where udev populates those dir
 A broken symlink (the device was removed but udev has not cleaned up yet) is silently skipped by `readByDir` and causes `resolveByDir` to return `null`. This matches `ls /dev/disk/by-uuid` behaviour, where the entry appears but cannot be followed. If you need to distinguish "UUID never existed" from "device was hot-removed", this library does not expose that distinction — both yield `null`.
 
 The directories and identifiers are treated as case-sensitive opaque strings. No validation is performed on UUID format, because labels have no format and udev does not enforce casing rules on UUIDs either.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
